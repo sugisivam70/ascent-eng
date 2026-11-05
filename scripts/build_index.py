@@ -1,0 +1,1110 @@
+# build_index.py
+import re
+
+html_content = '''<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ascent Engineering | Precision Machining. Engineered for Performance. | Peenya, Bengaluru</title>
+    <meta
+      name="description"
+      content="Ascent Engineering delivers precision CNC machining solutions through advanced multi-axis manufacturing capabilities, disciplined production processes and a commitment to dimensional quality in Peenya, Bengaluru."
+    />
+    <meta
+      name="keywords"
+      content="Ascent Engineering, Precision CNC Machining, 5-Axis VMC, 3-Axis VMC, Precision Milling Bengaluru, Peenya Industrial Area, CNC Tapping, Aerospace Components, Defense Manufacturing, Mahr 817 CLT"
+    />
+    <meta name="author" content="Ascent Engineering" />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Ascent Engineering | Precision Machining. Engineered for Performance." />
+    <meta
+      property="og:description"
+      content="Specializing in precision CNC machining, 5-axis vertical machining capabilities, 3-axis VMC fleet capacity, and aerospace/defense component manufacturing in Peenya, Bengaluru."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="img/generated/hero-facility-cinematic.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo/favicon.svg" />
+    <link rel="icon" type="image/png" href="logo/ascent-engineering-logo-transparent.png" />
+
+    <!-- Google Fonts: Barlow (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <!-- Top Announcement & Verification Bar -->
+    <div class="top-notice-bar">
+      <div class="container top-notice-container">
+        <div class="top-notice-left">
+          <div class="top-notice-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Ground Floor, B 40, Peenya 3rd Stage, 1st Main Road, Bengaluru – 560058</span>
+          </div>
+          <div class="top-notice-item">
+            <i class="fa-solid fa-id-card"></i>
+            <span>GSTIN: <strong class="gst-badge">29DCAPR1495B1ZK</strong></span>
+          </div>
+        </div>
+        <div class="top-notice-right">
+          <a href="tel:7353140847" class="top-notice-link">
+            <i class="fa-solid fa-phone"></i>
+            <span>+91 73531 40847</span>
+          </a>
+          <a href="mailto:ascenteng03@gmail.com" class="top-notice-link">
+            <i class="fa-solid fa-envelope"></i>
+            <span>ascenteng03@gmail.com</span>
+          </a>
+          <a
+            href="https://wa.me/917353140847?text=Hello%20Ascent%20Engineering%2C%20I%20would%20like%20to%20enquire%20about%20your%20precision%20CNC%20machining%20capabilities."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="top-notice-link whatsapp-link"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp Enquiry</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="navbar" id="mainNavbar">
+      <div class="container navbar-container">
+        <a href="index.html" class="logo-link" title="Ascent Engineering Home">
+          <img
+            src="logo/ascent-engineering-logo-transparent.png"
+            alt="Ascent Engineering Logo"
+            class="logo-mark-img"
+          />
+          <div class="logo-text-block">
+            <div class="logo-title">
+              <span class="brand-ascent">ASCENT</span>
+              <span class="brand-engineering">ENGINEERING</span>
+            </div>
+            <div class="logo-tagline">Aerospace &amp; Defense Parts Manufacturer</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+          <a href="index.html" class="nav-link active">About</a>
+          <a href="ourmachine.html" class="nav-link">Our Machines</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="nav-cta-wrap">
+          <a href="contact.html" class="btn btn-primary">
+            <span>Get in Touch</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Section 1: Cinematic Hero -->
+      <section class="hero-industrial">
+        <div class="hero-bg-wrapper">
+          <img
+            src="img/generated/hero-facility-cinematic.jpg"
+            alt="Ascent Engineering Modern CNC Manufacturing Facility"
+            class="hero-bg-img"
+          />
+          <div class="hero-gradient-overlay"></div>
+          <div class="hero-grid-pattern"></div>
+        </div>
+
+        <div class="container hero-content">
+          <div class="hero-badge-wrap">
+            <span class="badge-tag badge-tag-dark">
+              <i class="fa-solid fa-crosshairs"></i> Precision CNC &amp; VMC Machining • Peenya, Bengaluru
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            Precision Machining.<br />
+            <span class="text-highlight">Engineered for Performance.</span>
+          </h1>
+
+          <p class="hero-desc">
+            Ascent Engineering delivers precision CNC machining solutions through advanced multi-axis
+            manufacturing capabilities, disciplined production processes and a commitment to dimensional quality in Peenya, Bengaluru.
+          </p>
+
+          <div class="hero-actions">
+            <a href="services.html" class="btn btn-primary">
+              <i class="fa-solid fa-list-check"></i>
+              <span>Explore Services</span>
+            </a>
+            <a href="ourmachine.html" class="btn btn-secondary">
+              <i class="fa-solid fa-gears"></i>
+              <span>Our Machines</span>
+            </a>
+            <a href="contact.html" class="btn btn-outline-light">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Get in Touch</span>
+            </a>
+          </div>
+
+          <!-- Hero Highlights / Verified Fast Stats -->
+          <div class="hero-stats-row">
+            <div class="hero-stat-item">
+              <div class="hero-stat-icon">
+                <i class="fa-solid fa-cube"></i>
+              </div>
+              <div class="hero-stat-text">
+                <div class="stat-num">01 Machine</div>
+                <div class="stat-label">5-Axis VMC Capacity</div>
+              </div>
+            </div>
+
+            <div class="hero-stat-item">
+              <div class="hero-stat-icon">
+                <i class="fa-solid fa-industry"></i>
+              </div>
+              <div class="hero-stat-text">
+                <div class="stat-num">06 Machines</div>
+                <div class="stat-label">3-Axis VMC Fleet</div>
+              </div>
+            </div>
+
+            <div class="hero-stat-item">
+              <div class="hero-stat-icon">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+              <div class="hero-stat-text">
+                <div class="stat-num">Available</div>
+                <div class="stat-label">CNC Tapping Operations</div>
+              </div>
+            </div>
+
+            <div class="hero-stat-item">
+              <div class="hero-stat-icon">
+                <i class="fa-solid fa-ruler-combined"></i>
+              </div>
+              <div class="hero-stat-text">
+                <div class="stat-num">In-House</div>
+                <div class="stat-label">Mahr 2D Metrology</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Company Introduction & About ASCENT ENGINEERING -->
+      <section class="section section-white" id="about">
+        <div class="container">
+          <div class="about-split-grid">
+            <div class="about-text-col">
+              <div class="section-tag">
+                <i class="fa-solid fa-circle-info"></i> About Ascent Engineering
+              </div>
+              <h2 class="section-title">Manufacturing Precision Through Advanced Technology</h2>
+              <p>
+                <strong>Ascent Engineering</strong> specializes in precision CNC machining and engineered component
+                manufacturing. Our dedicated manufacturing facility in Peenya 3rd Stage, Bengaluru is equipped with simultaneous
+                5-axis and production 3-axis vertical machining centers, delivering tight geometric tolerances, complex contoured surfaces,
+                and high-repeatability batch production.
+              </p>
+              <p>
+                Serving critical sectors including <strong>aerospace, defense, and precision industrial engineering</strong>, we approach
+                manufacturing with rigorous engineering discipline. From 3D CAD/CAM model reviews and toolpath optimization to rigid fixturing
+                and in-process metrology, our team ensures every metallic component meets exacting drawing specifications.
+              </p>
+
+              <div class="about-key-highlights">
+                <div class="about-highlight-item">
+                  <div class="about-highlight-icon"><i class="fa-solid fa-microchip"></i></div>
+                  <div class="about-highlight-text">
+                    <h4>Multi-Axis Execution</h4>
+                    <p>Simultaneous 5-axis Hurco VC 500i machining for complex aerodynamic contours and compound angles.</p>
+                  </div>
+                </div>
+
+                <div class="about-highlight-item">
+                  <div class="about-highlight-icon"><i class="fa-solid fa-layer-group"></i></div>
+                  <div class="about-highlight-text">
+                    <h4>Production Agility</h4>
+                    <p>Six 3-axis VMC production lines (Cosmos &amp; Yantrang) configured for parallel batch milling.</p>
+                  </div>
+                </div>
+
+                <div class="about-highlight-item">
+                  <div class="about-highlight-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+                  <div class="about-highlight-text">
+                    <h4>Dimensional Discipline</h4>
+                    <p>Granite table metrology with calibrated Mahr Digimar 817 CLT 2D linear height measurement.</p>
+                  </div>
+                </div>
+
+                <div class="about-highlight-item">
+                  <div class="about-highlight-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                  <div class="about-highlight-text">
+                    <h4>Synchronized Tapping</h4>
+                    <p>Rigid CNC tapping cycles ensuring consistent thread pitch, depth accuracy, and zero cross-threading.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px;">
+                <a href="services.html" class="btn btn-primary">
+                  <span>Explore All Services</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="ourmachine.html" class="btn btn-outline-dark">
+                  <span>Explore Machine Fleet</span>
+                  <i class="fa-solid fa-gears"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Prominent Shop Floor Photograph with Lightbox -->
+            <div class="about-image-col">
+              <div class="about-main-image-wrap" data-lightbox-src="img/ascent/shop-floor-featured.jpg" data-lightbox-title="Ascent Engineering Actual Shop Floor &amp; VMC Fleet - Peenya 3rd Stage, Bengaluru">
+                <img
+                  src="img/ascent/shop-floor-featured.jpg"
+                  alt="Ascent Engineering Shop Floor - Precision CNC VMC Machine Fleet in Peenya Bengaluru"
+                  loading="lazy"
+                />
+                <div class="shop-floor-overlay-badge">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Ascent Shop Floor • Peenya 3rd Stage</span>
+                </div>
+                <div class="shop-floor-zoom-hint">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                  <span>Click to Enlarge</span>
+                </div>
+              </div>
+              <div class="about-floating-card">
+                <div class="card-title">Peenya 3rd Stage, Bengaluru</div>
+                <p>Ground Floor, B 40, 1st Main Road. Precision CNC machining, 5-axis &amp; 3-axis VMC facility.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Manufacturing Capabilities -->
+      <section class="section section-light" id="capabilities">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-tag">
+              <i class="fa-solid fa-gears"></i> Core Capabilities
+            </div>
+            <h2 class="section-title">Manufacturing Capabilities</h2>
+            <p class="section-subtitle">
+              Engineered machining solutions supporting complex multi-axis geometries, high-precision milling,
+              and rigid threading operations.
+            </p>
+          </div>
+
+          <div class="capabilities-3grid">
+            <!-- Card 1: 5-Axis CNC Machining -->
+            <div class="technical-card">
+              <div class="technical-card-img-wrap" data-lightbox-src="img/generated/machine-hurco-5axis.jpg" data-lightbox-title="Hurco VC 500i 5-Axis CNC Machining">
+                <img
+                  src="img/generated/machine-hurco-5axis.jpg"
+                  alt="5-Axis CNC Machining of Complex Engineered Component"
+                  loading="lazy"
+                />
+                <span class="technical-card-badge">Advanced Multiaxis</span>
+              </div>
+              <div class="technical-card-body">
+                <h3 class="technical-card-title">5-Axis CNC Machining</h3>
+                <p class="technical-card-text">
+                  Complex component machining with simultaneous multi-axis capability on our Hurco VC 500i. Enables continuous milling of
+                  sculpted aerodynamic surfaces, impellers, and contoured metallic geometry in single or minimal clamping setups.
+                </p>
+                <div class="technical-card-specs">
+                  <span>Capacity: 01 Machine (Hurco VC 500i)</span>
+                  <i class="fa-solid fa-arrows-spin"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: 3-Axis VMC Machining -->
+            <div class="technical-card">
+              <div class="technical-card-img-wrap" data-lightbox-src="img/ascent/shop-floor-featured.jpg" data-lightbox-title="Ascent Engineering Production VMC Fleet">
+                <img
+                  src="img/ascent/shop-floor-featured.jpg"
+                  alt="3-Axis VMC Machining Fleet at Ascent Engineering"
+                  loading="lazy"
+                />
+                <span class="technical-card-badge">Production Fleet</span>
+              </div>
+              <div class="technical-card-body">
+                <h3 class="technical-card-title">3-Axis VMC Machining</h3>
+                <p class="technical-card-text">
+                  Precision milling operations for engineered components across our six VMC lines. High-rigidity cast spindles, stable
+                  clamping beds, and automated tool changers handle batch production with dependable repeatability.
+                </p>
+                <div class="technical-card-specs">
+                  <span>Capacity: 06 Machines (Cosmos &amp; Yantrang)</span>
+                  <i class="fa-solid fa-industry"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: CNC Tapping Operations -->
+            <div class="technical-card">
+              <div class="technical-card-img-wrap" data-lightbox-src="img/generated/cnc-cutting-coolant.jpg" data-lightbox-title="Synchronized CNC Rigid Tapping">
+                <img
+                  src="img/generated/cnc-cutting-coolant.jpg"
+                  alt="CNC Tapping and Milling Operations with Flood Coolant"
+                  loading="lazy"
+                />
+                <span class="technical-card-badge">Threading &amp; Tapping</span>
+              </div>
+              <div class="technical-card-body">
+                <h3 class="technical-card-title">CNC Tapping Operations</h3>
+                <p class="technical-card-text">
+                  Accurate thread machining and tapping operations. Rigid synchronized tapping cycles ensure uniform
+                  thread pitch, clean root clearance, and zero cross-threading across deep-hole and blind-hole configurations.
+                </p>
+                <div class="technical-card-specs">
+                  <span>Operations Available</span>
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 36px;">
+            <a href="services.html" class="btn btn-primary" style="padding: 14px 32px;">
+              <span>View All 9 Specialized Engineering Services</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Industries We Serve (Requirement #4) -->
+      <section class="section section-white" id="industries">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-tag">
+              <i class="fa-solid fa-plane-up"></i> Market Sectors
+            </div>
+            <h2 class="section-title">Industries We Serve</h2>
+            <p class="section-subtitle">
+              Delivering high-reliability precision machining and engineered metallic components for high-consequence industries where performance is critical.
+            </p>
+          </div>
+
+          <div class="industries-grid">
+            <!-- 1. Aerospace -->
+            <div class="industry-card">
+              <div class="industry-img-wrap" data-lightbox-src="img/aerospace-industry.jpg" data-lightbox-title="Aerospace Component Machining">
+                <img
+                  src="img/aerospace-industry.jpg"
+                  alt="Aerospace Precision Machining &amp; Flight-Critical Components"
+                  loading="lazy"
+                />
+                <span class="industry-badge">Aerospace</span>
+              </div>
+              <div class="industry-body">
+                <h3 class="industry-title">Aerospace</h3>
+                <p class="industry-desc">
+                  Machining of lightweight avionics structural frames, sensor housings, aerodynamic brackets, and thin-wall enclosures manufactured to exacting geometric tolerances.
+                </p>
+                <div class="industry-materials">
+                  <div class="industry-materials-label">
+                    <i class="fa-solid fa-dna"></i> Key Alloys &amp; Standards
+                  </div>
+                  <p class="industry-materials-text">
+                    Aluminium 6061-T6, 7075-T651, Stainless Steel 316, Aircraft Titanium alloys.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Defense -->
+            <div class="industry-card">
+              <div class="industry-img-wrap" data-lightbox-src="img/defence-engineering.jpg" data-lightbox-title="Defense Engineering Machining">
+                <img
+                  src="img/defence-engineering.jpg"
+                  alt="Defense Engineering Machined Components and Sealed Enclosures"
+                  loading="lazy"
+                />
+                <span class="industry-badge">Defense</span>
+              </div>
+              <div class="industry-body">
+                <h3 class="industry-title">Defense</h3>
+                <p class="industry-desc">
+                  Tactical hardware, ruggedized electronic housings, guidance chassis, and high-strength mechanical assemblies engineered for demanding operational environments under strict confidentiality.
+                </p>
+                <div class="industry-materials">
+                  <div class="industry-materials-label">
+                    <i class="fa-solid fa-shield"></i> Key Alloys &amp; Standards
+                  </div>
+                  <p class="industry-materials-text">
+                    High-strength alloy steels, precipitation-hardened stainless, engineered armor aluminium.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Industrial Engineering -->
+            <div class="industry-card">
+              <div class="industry-img-wrap" data-lightbox-src="img/abt/metal-industry-workshop-precision-machinery-automated-production-line-robotic-arm-generated-by-ai-free-photo.jpg" data-lightbox-title="Industrial Engineering Machining">
+                <img
+                  src="img/abt/metal-industry-workshop-precision-machinery-automated-production-line-robotic-arm-generated-by-ai-free-photo.jpg"
+                  alt="Industrial Machinery Components and Automated Production Hardware"
+                  loading="lazy"
+                />
+                <span class="industry-badge">Industrial Engineering</span>
+              </div>
+              <div class="industry-body">
+                <h3 class="industry-title">Industrial Engineering</h3>
+                <p class="industry-desc">
+                  Heavy-duty machinery parts, custom automated tooling plates, bearing mounts, and high-load mechanical interfaces designed for reliable, continuous industrial service.
+                </p>
+                <div class="industry-materials">
+                  <div class="industry-materials-label">
+                    <i class="fa-solid fa-industry"></i> Key Alloys &amp; Standards
+                  </div>
+                  <p class="industry-materials-text">
+                    Carbon steels (EN8/EN19/EN24), tool steels, bronze alloys, engineering structural metals.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Precision Manufacturing -->
+            <div class="industry-card">
+              <div class="industry-img-wrap" data-lightbox-src="img/precision-engineering.jpg" data-lightbox-title="Precision Manufacturing Components">
+                <img
+                  src="img/precision-engineering.jpg"
+                  alt="Precision Machined Parts with Micron-Level Tolerances"
+                  loading="lazy"
+                />
+                <span class="industry-badge">Precision Manufacturing</span>
+              </div>
+              <div class="industry-body">
+                <h3 class="industry-title">Precision Manufacturing</h3>
+                <p class="industry-desc">
+                  High-accuracy prismatic components, precision indexing blocks, reference fixturing, and multi-axis assemblies requiring micron-level repeatability and clean surface textures.
+                </p>
+                <div class="industry-materials">
+                  <div class="industry-materials-label">
+                    <i class="fa-solid fa-microchip"></i> Key Alloys &amp; Standards
+                  </div>
+                  <p class="industry-materials-text">
+                    Die steels, hardened tool steels, precision aluminium plate, high-nickel stainless steels.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Advanced Mechanical Components -->
+            <div class="industry-card" style="grid-column: span 2;">
+              <div class="industry-img-wrap" data-lightbox-src="img/critical-applications.jpg" data-lightbox-title="Advanced Mechanical Components &amp; Manifolds">
+                <img
+                  src="img/critical-applications.jpg"
+                  alt="Advanced Mechanical Components, Hydraulic Blocks, and Manifolds"
+                  loading="lazy"
+                />
+                <span class="industry-badge">Advanced Mechanical</span>
+              </div>
+              <div class="industry-body">
+                <h3 class="industry-title">Advanced Mechanical Components</h3>
+                <p class="industry-desc">
+                  Fluid power manifolds, precision hydraulic valve blocks, thermal cold plates, and multi-port fluid distribution assemblies featuring intricate internal flow passages and vacuum-tight sealing surfaces.
+                </p>
+                <div class="industry-materials">
+                  <div class="industry-materials-label">
+                    <i class="fa-solid fa-diagram-project"></i> Key Alloys &amp; Standards
+                  </div>
+                  <p class="industry-materials-text">
+                    Billet aluminium 6082/7075, stainless 304L/316L, ductile iron, custom brass hydraulic fittings.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Manufacturing Process Section (Requirement #5) -->
+      <section class="section process-section" id="process">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-tag" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8;">
+              <i class="fa-solid fa-diagram-project"></i> Quality Driven Workflow
+            </div>
+            <h2 class="section-title" style="color: var(--color-white);">Our Manufacturing Process</h2>
+            <p class="section-subtitle" style="color: #CBD5E1;">
+              A structured, step-by-step methodology ensuring complete drawing compliance, repeatable tolerances, and reliable batch execution from receipt to delivery.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <!-- Step 1 -->
+            <div class="process-step-card">
+              <div class="process-step-header">
+                <div class="process-step-num">01</div>
+                <div class="process-step-icon"><i class="fa-solid fa-file-contract"></i></div>
+              </div>
+              <h3 class="process-step-title">Technical Drawing Review</h3>
+              <p class="process-step-desc">
+                Engineering review of 2D manufacturing drawings and 3D CAD/CAM models. Analyzing GD&amp;T datums, critical bore tolerances, thread specifications, and material suitability.
+              </p>
+              <ul class="process-step-deliverables">
+                <li><i class="fa-solid fa-check"></i> 2D/3D CAD geometry verification</li>
+                <li><i class="fa-solid fa-check"></i> GD&amp;T &amp; tolerance stack analysis</li>
+                <li><i class="fa-solid fa-check"></i> DFM optimization recommendations</li>
+              </ul>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-step-card">
+              <div class="process-step-header">
+                <div class="process-step-num">02</div>
+                <div class="process-step-icon"><i class="fa-solid fa-sliders"></i></div>
+              </div>
+              <h3 class="process-step-title">Manufacturing Planning</h3>
+              <p class="process-step-desc">
+                Toolpath generation, cutting tool selection, custom fixturing setup, and material allocation to guarantee minimal setup vibration and maximum positional repeatability.
+              </p>
+              <ul class="process-step-deliverables">
+                <li><i class="fa-solid fa-check"></i> Multi-axis CNC CAM simulation</li>
+                <li><i class="fa-solid fa-check"></i> Standardized fixture &amp; vise staging</li>
+                <li><i class="fa-solid fa-check"></i> Verified alloy raw material staging</li>
+              </ul>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="process-step-card">
+              <div class="process-step-header">
+                <div class="process-step-num">03</div>
+                <div class="process-step-icon"><i class="fa-solid fa-gears"></i></div>
+              </div>
+              <h3 class="process-step-title">CNC Machining</h3>
+              <p class="process-step-desc">
+                Execution on our 5-axis Hurco and 3-axis VMC fleet. High-rigidity milling, pocketing, boring, and synchronized rigid tapping with controlled flood coolant stabilization.
+              </p>
+              <ul class="process-step-deliverables">
+                <li><i class="fa-solid fa-check"></i> 5-Axis &amp; 3-Axis multi-station cutting</li>
+                <li><i class="fa-solid fa-check"></i> Thermal coolant stabilization</li>
+                <li><i class="fa-solid fa-check"></i> Continuous tool wear compensation</li>
+              </ul>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="process-step-card">
+              <div class="process-step-header">
+                <div class="process-step-num">04</div>
+                <div class="process-step-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+              </div>
+              <h3 class="process-step-title">Component Inspection</h3>
+              <p class="process-step-desc">
+                Rigorous in-process dimensional inspection. First-piece verification (FAI), intermediate batch sampling, and thread testing with calibrated plug gauges and bore micrometers.
+              </p>
+              <ul class="process-step-deliverables">
+                <li><i class="fa-solid fa-check"></i> First Article Inspection (FAI)</li>
+                <li><i class="fa-solid fa-check"></i> Bore &amp; step height verification</li>
+                <li><i class="fa-solid fa-check"></i> Thread go/no-go quality check</li>
+              </ul>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="process-step-card">
+              <div class="process-step-header">
+                <div class="process-step-num">05</div>
+                <div class="process-step-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+              </div>
+              <h3 class="process-step-title">Quality Verification</h3>
+              <p class="process-step-desc">
+                Metrological validation on granite surface plates using our calibrated Mahr Digimar 817 CLT 2D linear height gauge and surface parameter standards.
+              </p>
+              <ul class="process-step-deliverables">
+                <li><i class="fa-solid fa-check"></i> Mahr 2D height gauge metrology</li>
+                <li><i class="fa-solid fa-check"></i> Surface roughness (Ra) compliance</li>
+                <li><i class="fa-solid fa-check"></i> Comprehensive inspection reports</li>
+              </ul>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="process-step-card">
+              <div class="process-step-header">
+                <div class="process-step-num">06</div>
+                <div class="process-step-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+              </div>
+              <h3 class="process-step-title">Final Delivery</h3>
+              <p class="process-step-desc">
+                Precision deburring, ultrasonic solvent degreasing, individual protective cushioning wrap, lot labeling, and prompt dispatch to client assembly lines.
+              </p>
+              <ul class="process-step-deliverables">
+                <li><i class="fa-solid fa-check"></i> Ultrasonic cleaning &amp; deburring</li>
+                <li><i class="fa-solid fa-check"></i> Protective surface wrap packaging</li>
+                <li><i class="fa-solid fa-check"></i> Batch traceability &amp; fast dispatch</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Verified Infrastructure Highlights -->
+      <section class="section section-dark" id="infrastructure">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-tag">
+              <i class="fa-solid fa-sliders"></i> Machine Capacity
+            </div>
+            <h2 class="section-title">Verified Infrastructure Highlights</h2>
+            <p class="section-subtitle">
+              Our available machine capacity configured for precision aerospace, automotive, defense, and custom engineering components.
+            </p>
+          </div>
+
+          <div class="infrastructure-stats-grid">
+            <div class="infra-stat-card">
+              <div class="infra-stat-num">01 <span class="unit">Machine</span></div>
+              <h3 class="infra-stat-title">5-Axis VMC</h3>
+              <p class="infra-stat-desc">
+                Hurco VC 500i multi-axis vertical machining center engineered for simultaneous complex profiling and contoured geometries.
+              </p>
+            </div>
+
+            <div class="infra-stat-card">
+              <div class="infra-stat-num">06 <span class="unit">Machines</span></div>
+              <h3 class="infra-stat-title">3-Axis VMC Fleet</h3>
+              <p class="infra-stat-desc">
+                Six vertical machining centers (Cosmos &amp; Yantrang platforms) installed in line to accommodate parallel batch milling and rapid turnaround jobs.
+              </p>
+            </div>
+
+            <div class="infra-stat-card">
+              <div class="infra-stat-num"><i class="fa-solid fa-check-double" style="font-size: 2.2rem; color: var(--color-blue-accent);"></i> <span class="unit">Available</span></div>
+              <h3 class="infra-stat-title">CNC Tapping Operations</h3>
+              <p class="infra-stat-desc">
+                Synchronized rigid thread tapping ensuring accurate pitch control and consistent internal threads across all batches.
+              </p>
+            </div>
+
+            <div class="infra-stat-card">
+              <div class="infra-stat-num"><i class="fa-solid fa-ruler-combined" style="font-size: 2.2rem; color: var(--color-blue-accent);"></i> <span class="unit">In-House</span></div>
+              <h3 class="infra-stat-title">Precision Metrology</h3>
+              <p class="infra-stat-desc">
+                Mahr Digimar 817 CLT 2D linear height gauge and surface parameter standards supporting verified inspection on granite benches.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Precision Component Manufacturing Portfolio -->
+      <section class="section section-white" id="components">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-tag">
+              <i class="fa-solid fa-cubes"></i> Component Portfolio
+            </div>
+            <h2 class="section-title">Precision Component Manufacturing</h2>
+            <p class="section-subtitle">
+              Machining of custom components based on engineering drawings across aerospace, defense, and precision mechanical applications.
+            </p>
+          </div>
+
+          <div class="asymmetric-gallery">
+            <!-- Left: Large Featured Editorial Card (Cylindrical Avionics Housing) -->
+            <div class="asymmetric-featured-card" data-lightbox-src="img/generated/component-avionics-cylindrical-housing.jpg" data-lightbox-title="Precision Cylindrical Avionics &amp; Sensor Housing">
+              <div class="asymmetric-featured-img-wrap">
+                <img
+                  src="img/generated/component-avionics-cylindrical-housing.jpg"
+                  alt="Precision Cylindrical Avionics &amp; Sensor Housing"
+                  loading="lazy"
+                />
+              </div>
+              <div class="asymmetric-featured-info">
+                <div class="asymmetric-featured-category">Aerospace &amp; Defense Component</div>
+                <h3 class="asymmetric-featured-title">Precision Cylindrical Avionics &amp; Sensor Housings</h3>
+                <p class="asymmetric-featured-desc">
+                  Multi-axis turned and milled aerospace enclosure featuring precision side pocket bays, mounting flanges, and fine-pitch tapped hole matrices. Machined from solid aerospace-grade alloy with strict datum concentricity.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Stacked Column Featuring Manufactured Aerospace Parts -->
+            <div class="asymmetric-stack-col">
+              <!-- Subcard 1: Avionics Chassis Enclosure -->
+              <div class="asymmetric-subcard" data-lightbox-src="img/generated/component-aerospace-avionics-chassis.jpg" data-lightbox-title="Multi-Bay Aerospace Avionics Chassis">
+                <img
+                  src="img/generated/component-aerospace-avionics-chassis.jpg"
+                  alt="Multi-Bay Aerospace Avionics Chassis"
+                  class="asymmetric-subcard-img"
+                  loading="lazy"
+                />
+                <div class="asymmetric-subcard-info">
+                  <div class="asymmetric-subcard-cat">Avionics Structural Chassis</div>
+                  <h4 class="asymmetric-subcard-title">Multi-Bay Electronic Chassis Plates</h4>
+                  <p class="asymmetric-subcard-desc">Elongated thin-wall structural plates with deep pocket milling, isolation rib dividers, and high-density fastener patterns.</p>
+                </div>
+              </div>
+
+              <!-- Subcard 2: Thermal Cold Plate -->
+              <div class="asymmetric-subcard" data-lightbox-src="img/generated/component-thermal-cold-plate.jpg" data-lightbox-title="Precision-Milled Aerospace Thermal Cold Plate">
+                <img
+                  src="img/generated/component-thermal-cold-plate.jpg"
+                  alt="Precision-Milled Aerospace Thermal Cold Plate"
+                  class="asymmetric-subcard-img"
+                  loading="lazy"
+                />
+                <div class="asymmetric-subcard-info">
+                  <div class="asymmetric-subcard-cat">Thermal Management</div>
+                  <h4 class="asymmetric-subcard-title">Precision Thermal Cold Plates</h4>
+                  <p class="asymmetric-subcard-desc">High-density micro-channel cooling plates with parallel channels and perimeter vacuum sealing lands.</p>
+                </div>
+              </div>
+
+              <!-- Subcard 3: Thin-Wall Lattice Baffle -->
+              <div class="asymmetric-subcard" data-lightbox-src="img/generated/component-thinwall-lattice-baffle.jpg" data-lightbox-title="Intricate Thin-Wall Lattice Baffle Structure">
+                <img
+                  src="img/generated/component-thinwall-lattice-baffle.jpg"
+                  alt="Intricate Thin-Wall Lattice Baffle Structure"
+                  class="asymmetric-subcard-img"
+                  loading="lazy"
+                />
+                <div class="asymmetric-subcard-info">
+                  <div class="asymmetric-subcard-cat">Thin-Wall Geometry</div>
+                  <h4 class="asymmetric-subcard-title">Thin-Wall Lattice Baffle Structures</h4>
+                  <p class="asymmetric-subcard-desc">Intricate cellular cutouts and perforated metal shields engineered for lightweight structural rigidity.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Quality & Inspection -->
+      <section class="section section-dark" id="quality">
+        <div class="container">
+          <div class="quality-metrology-split">
+            <div class="quality-feature-box">
+              <span class="quality-equipment-badge">
+                <i class="fa-solid fa-ruler-combined"></i> Metrology &amp; Quality Control
+              </span>
+              <h2 class="quality-equipment-title">Quality Begins with Measurement.</h2>
+              <p class="quality-equipment-desc">
+                At Ascent Engineering, precision is governed by strict measurement protocols. Our quality inspection
+                process emphasizes dimensional verification, surface roughness discipline, and repeatable accuracy from first article to final batch dispatch.
+              </p>
+
+              <div class="quality-check-grid">
+                <div class="quality-check-item">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div>
+                    <strong>Dimensional Measurement</strong>
+                    <span>Step heights, bore diameters, and centerline true positions verified on granite tables.</span>
+                  </div>
+                </div>
+
+                <div class="quality-check-item">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div>
+                    <strong>Component Inspection</strong>
+                    <span>Systematic first-piece verification, in-process sampling, and 100% pre-dispatch checks.</span>
+                  </div>
+                </div>
+
+                <div class="quality-check-item">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div>
+                    <strong>Surface Parameter Awareness</strong>
+                    <span>Monitoring roughness parameters (Ra, Rz, Rmax) in accordance with international DIN &amp; ISO standards.</span>
+                  </div>
+                </div>
+
+                <div class="quality-check-item">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <div>
+                    <strong>Quality-Focused Operations</strong>
+                    <span>Cutter wear compensation and systematic calibration of verniers, micrometers, and gauges.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quality-img-container" data-lightbox-src="img/generated/metrology-inspection-lab.jpg" data-lightbox-title="Ascent Engineering Metrology Inspection Laboratory">
+              <img
+                src="img/generated/metrology-inspection-lab.jpg"
+                alt="Quality Inspection and Dimensional Measurement Lab at Ascent Engineering"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Manufacturing Environment & Authentic Shop Floor Showcase -->
+      <section class="manufacturing-env-section" id="environment">
+        <div class="env-bg-wrapper">
+          <img
+            src="img/ascent/shop-floor-wide.jpg"
+            alt="Ascent Engineering Clean Manufacturing Environment in Peenya Bengaluru"
+            class="env-bg-img"
+          />
+          <div class="env-overlay"></div>
+        </div>
+
+        <div class="container env-content">
+          <span class="badge-tag badge-tag-dark" style="margin-bottom: 16px;">
+            <i class="fa-solid fa-warehouse"></i> Production Environment
+          </span>
+          <h2 class="env-title">Disciplined Manufacturing Infrastructure</h2>
+          <p class="env-desc">
+            A clean, organized production floor located in Peenya 3rd Stage, Bengaluru, built to support
+            high-precision CNC milling and disciplined component production.
+          </p>
+
+          <div class="env-features-row">
+            <div class="env-feature-card">
+              <i class="fa-solid fa-bolt"></i>
+              <h4>Stable Power Distribution</h4>
+              <p>Dedicated industrial power infrastructure ensuring uninterrupted machine cycles and thermal stability.</p>
+            </div>
+
+            <div class="env-feature-card">
+              <i class="fa-solid fa-faucet-drip"></i>
+              <h4>Coolant &amp; Thermal Control</h4>
+              <p>High-flow filtration systems maintaining cutting temperature, tool longevity, and surface integrity.</p>
+            </div>
+
+            <div class="env-feature-card">
+              <i class="fa-solid fa-recycle"></i>
+              <h4>Disciplined Chip Evacuation</h4>
+              <p>Continuous swarf extraction preventing chip recutting and protecting critical finished faces.</p>
+            </div>
+
+            <div class="env-feature-card">
+              <i class="fa-solid fa-box-archive"></i>
+              <h4>Staging &amp; Traceability</h4>
+              <p>Organized batch staging, protective component sleeves, and batch traceability protocols.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 10: Why Ascent Engineering (6 Engineering Pillars) -->
+      <section class="section section-light" id="why-ascent">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-tag">
+              <i class="fa-solid fa-shield-halved"></i> Engineering Partnership
+            </div>
+            <h2 class="section-title">Why Ascent Engineering</h2>
+            <p class="section-subtitle">
+              We combine robust machine capacity, manufacturing discipline, and dependable customer collaboration
+              to give engineering teams complete confidence in their precision components.
+            </p>
+          </div>
+
+          <div class="why-ascent-grid">
+            <div class="why-ascent-card">
+              <div class="why-ascent-icon-wrap"><i class="fa-solid fa-server"></i></div>
+              <h3 class="why-ascent-title">Advanced CNC Infrastructure</h3>
+              <p class="why-ascent-desc">
+                Equipped with vertical machining centers featuring modern CNC controllers and high-rigidity structures
+                for dependable repeatable performance.
+              </p>
+            </div>
+
+            <div class="why-ascent-card">
+              <div class="why-ascent-icon-wrap"><i class="fa-solid fa-arrows-spin"></i></div>
+              <h3 class="why-ascent-title">Multi-Axis Machining Capability</h3>
+              <p class="why-ascent-desc">
+                Dedicated 5-axis Hurco VC 500i capability and multi-axis rotary setups to manufacture intricate geometry, aerofoils,
+                and compound angles with minimal setups.
+              </p>
+            </div>
+
+            <div class="why-ascent-card">
+              <div class="why-ascent-icon-wrap"><i class="fa-solid fa-cubes"></i></div>
+              <h3 class="why-ascent-title">Precision Component Manufacturing</h3>
+              <p class="why-ascent-desc">
+                From engineering drawings to finished metallic parts, supporting aerospace, defense, automotive, and automation applications.
+              </p>
+            </div>
+
+            <div class="why-ascent-card">
+              <div class="why-ascent-icon-wrap"><i class="fa-solid fa-square-check"></i></div>
+              <h3 class="why-ascent-title">Quality-Focused Operations</h3>
+              <p class="why-ascent-desc">
+                Structured dimensional inspection utilizing Mahr 2D linear height measurement and calibrated tools on granite reference benches.
+              </p>
+            </div>
+
+            <div class="why-ascent-card">
+              <div class="why-ascent-icon-wrap"><i class="fa-solid fa-pen-ruler"></i></div>
+              <h3 class="why-ascent-title">Custom Machining Requirements</h3>
+              <p class="why-ascent-desc">
+                Flexible production agility supporting quick-turn prototypes, pre-production trial lots, and continuous batch manufacturing.
+              </p>
+            </div>
+
+            <div class="why-ascent-card">
+              <div class="why-ascent-icon-wrap"><i class="fa-solid fa-building-circle-check"></i></div>
+              <h3 class="why-ascent-title">Dedicated Manufacturing Facility</h3>
+              <p class="why-ascent-desc">
+                Conveniently situated in Peenya 3rd Stage, Bengaluru's premier industrial corridor, providing direct engineering accessibility.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 11: Final RFQ Consultation CTA Banner -->
+      <section class="cta-banner">
+        <div class="container cta-banner-content">
+          <div class="cta-banner-text">
+            <span class="badge-tag badge-tag-dark" style="margin-bottom: 12px;">
+              <i class="fa-solid fa-headset"></i> Engineering Consultation
+            </span>
+            <h2 class="cta-banner-title">Have a Precision Machining Requirement?</h2>
+            <p class="cta-banner-desc">
+              Connect with our team to discuss your component requirements and manufacturing needs.
+              We are prepared to review 2D/3D CAD models and discuss production feasibility.
+            </p>
+          </div>
+          <div class="cta-banner-btns">
+            <a href="services.html" class="btn btn-secondary">
+              <i class="fa-solid fa-list-check"></i>
+              <span>View All Services</span>
+            </a>
+            <a href="contact.html" class="btn btn-primary">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Contact Our Team</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Professional Corporate Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Col 1: Brand Info -->
+          <div class="footer-col-brand">
+            <div class="footer-logo-block">
+              <img
+                src="logo/ascent-engineering-logo-transparent.png"
+                alt="Ascent Engineering"
+                class="footer-logo-img"
+              />
+              <div class="logo-title" style="font-size: 1.3rem;">
+                <span class="brand-ascent">ASCENT</span>
+                <span class="brand-engineering">ENGINEERING</span>
+              </div>
+            </div>
+            <p>
+              Aerospace &amp; Defense Parts Manufacturer. Dedicated 5-axis and 3-axis VMC facility
+              in Ground Floor, B 40, Peenya 3rd Stage, 1st Main Road, Bengaluru – 560058.
+            </p>
+            <div class="top-notice-item">
+              <i class="fa-solid fa-id-card"></i>
+              <span>GSTIN: <strong class="gst-badge">29DCAPR1495B1ZK</strong></span>
+            </div>
+          </div>
+
+          <!-- Col 2: Navigation Links -->
+          <div>
+            <h3 class="footer-heading">Navigation</h3>
+            <div class="footer-links">
+              <a href="index.html"><i class="fa-solid fa-chevron-right"></i> About Ascent</a>
+              <a href="ourmachine.html"><i class="fa-solid fa-chevron-right"></i> Our Machines</a>
+              <a href="services.html"><i class="fa-solid fa-chevron-right"></i> Services</a>
+              <a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact &amp; Inquiry</a>
+            </div>
+          </div>
+
+          <!-- Col 3: Machining Capabilities -->
+          <div>
+            <h3 class="footer-heading">Capabilities</h3>
+            <div class="footer-links">
+              <a href="services.html#5-axis-machining"><i class="fa-solid fa-chevron-right"></i> 5-Axis VMC (01 Machine)</a>
+              <a href="services.html#vmc-machining"><i class="fa-solid fa-chevron-right"></i> 3-Axis VMC (06 Machines)</a>
+              <a href="services.html#drilling-tapping"><i class="fa-solid fa-chevron-right"></i> CNC Tapping Operations</a>
+              <a href="services.html#precision-components"><i class="fa-solid fa-chevron-right"></i> Precision Components</a>
+              <a href="ourmachine.html#instruments-table"><i class="fa-solid fa-chevron-right"></i> Quality Metrology</a>
+            </div>
+          </div>
+
+          <!-- Col 4: Contact Details -->
+          <div>
+            <h3 class="footer-heading">Plant Address</h3>
+            <div class="footer-contact-items">
+              <div class="footer-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Ground Floor, B 40, Peenya 3rd Stage, 1st Main Road, Bengaluru – 560058</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:7353140847" style="color: #CBD5E1;">+91 73531 40847</a>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:ascenteng03@gmail.com" style="color: #CBD5E1;">ascenteng03@gmail.com</a>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>Mon – Sat: 9:00 AM – 7:30 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            &copy; <span id="currentYear">2026</span> ASCENT ENGINEERING. All rights reserved. Precision CNC Machining, Peenya, Bengaluru.
+          </div>
+          <div>
+            Ground Floor, B 40, Peenya 3rd Stage, 1st Main Road, Bengaluru – 560058
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close image">&times;</button>
+        <img src="" alt="" id="lightboxImg" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script>
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
+'''
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print('index.html written successfully!')

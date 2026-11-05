@@ -212,4 +212,23 @@ Facility: Ascent Engineering, Ground Floor, B 40, Peenya 3rd Stage, 1st Main Roa
       }
     });
   }
+
+  // 5. Pre-select Service from URL Query Parameter (e.g. contact.html?service=CNC+Milling)
+  const urlParams = new URLSearchParams(window.location.search);
+  const serviceParam = urlParams.get('service');
+  if (serviceParam) {
+    const serviceSelect = document.getElementById('serviceRequired');
+    if (serviceSelect) {
+      for (let i = 0; i < serviceSelect.options.length; i++) {
+        if (
+          serviceSelect.options[i].value.toLowerCase() === serviceParam.toLowerCase() ||
+          serviceSelect.options[i].value.toLowerCase().includes(serviceParam.toLowerCase())
+        ) {
+          serviceSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
 });

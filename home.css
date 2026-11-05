@@ -205,7 +205,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 84px;
+  height: 72px;
 }
 
 .logo-link {
@@ -216,7 +216,7 @@ ul {
 }
 
 .logo-mark-img {
-  height: 52px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
@@ -257,7 +257,7 @@ ul {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 26px;
 }
 
 .nav-link {
@@ -1638,7 +1638,7 @@ ul {
 
   .nav-links {
     position: fixed;
-    top: 84px;
+    top: 72px;
     left: 0;
     width: 100%;
     background: var(--color-navy-dark);
@@ -1721,6 +1721,48 @@ ul {
   padding: 100px 0 70px;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.machine-facility-section {
+  padding: 64px 0;
+  background: #F8FAFC;
+}
+
+.machine-facility-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.machine-facility-copy .badge-tag {
+  margin-bottom: 16px;
+}
+
+.machine-facility-title {
+  margin: 0 0 16px;
+  color: var(--color-navy-dark);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.machine-facility-copy p {
+  margin: 0 0 24px;
+  color: #475569;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.machine-facility-image {
+  display: block;
+  width: 100%;
+  min-height: 320px;
+  max-height: 440px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  box-shadow: 0 16px 40px rgba(11, 19, 43, 0.16);
 }
 
 .page-hero-banner.contact-hero-banner {
@@ -2512,6 +2554,10 @@ textarea.form-control {
 
 /* Inner Page Responsive Breakpoints */
 @media (max-width: 1024px) {
+  .machine-facility-layout {
+    gap: 32px;
+  }
+
   .machine-stat-counter-bar,
   .contact-cards-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2543,6 +2589,19 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+  .machine-facility-section {
+    padding: 44px 0;
+  }
+
+  .machine-facility-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .machine-facility-image {
+    min-height: 240px;
+  }
+
   .page-hero-title {
     font-size: 2.4rem;
   }
@@ -2572,6 +2631,541 @@ textarea.form-control {
 
   .quick-cta-bar {
     padding: 32px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* ==========================================================================
+   ENHANCED SECTIONS: SERVICES, INDUSTRIES, MANUFACTURING PROCESS & SHOP FLOOR
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   A. Shop Floor Verification Showcase
+   -------------------------------------------------------------------------- */
+.shop-floor-feature-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--color-navy);
+}
+
+.shop-floor-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.shop-floor-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shop-floor-img-wrap:hover img {
+  transform: scale(1.04);
+}
+
+.shop-floor-overlay-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: rgba(11, 18, 32, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.shop-floor-overlay-badge i {
+  color: #22C55E;
+}
+
+.shop-floor-zoom-hint {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: rgba(11, 18, 32, 0.82);
+  backdrop-filter: blur(6px);
+  color: #E2E8F0;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.shop-floor-meta-bar {
+  padding: 18px 24px;
+  background: linear-gradient(180deg, #101D35 0%, #0B1220 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shop-floor-meta-info h4 {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.shop-floor-meta-info p {
+  color: #94A3B8;
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.shop-floor-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shop-floor-chip {
+  background: rgba(18, 102, 178, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--color-blue-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* --------------------------------------------------------------------------
+   B. Industries We Serve Grid & Cards
+   -------------------------------------------------------------------------- */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.industry-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.industry-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(18, 102, 178, 0.35);
+}
+
+.industry-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.industry-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.industry-card:hover .industry-img-wrap img {
+  transform: scale(1.06);
+}
+
+.industry-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(11, 18, 32, 0.85);
+  backdrop-filter: blur(6px);
+  color: var(--color-blue-accent);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.industry-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.industry-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-navy-dark);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.industry-desc {
+  font-size: 0.92rem;
+  color: var(--color-steel-dark);
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.industry-materials {
+  background: var(--color-bg-light);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  border-left: 3px solid var(--color-blue-industrial);
+}
+
+.industry-materials-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.industry-materials-text {
+  font-size: 0.82rem;
+  color: var(--color-steel-dark);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   C. Manufacturing Process Section (Step-by-Step 6 Stages)
+   -------------------------------------------------------------------------- */
+.process-section {
+  background: var(--color-navy);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  position: relative;
+}
+
+.process-step-card {
+  background: rgba(22, 38, 70, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  position: relative;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.process-step-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  background: rgba(22, 38, 70, 0.95);
+}
+
+.process-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.process-step-num {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: rgba(56, 189, 248, 0.3);
+  line-height: 1;
+  letter-spacing: -1px;
+  transition: color var(--transition-fast);
+}
+
+.process-step-card:hover .process-step-num {
+  color: var(--color-blue-accent);
+}
+
+.process-step-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  background: rgba(18, 102, 178, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--color-blue-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.process-step-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.process-step-desc {
+  font-size: 0.88rem;
+  color: #CBD5E1;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.process-step-deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+}
+
+.process-step-deliverables li {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.process-step-deliverables li:last-child {
+  margin-bottom: 0;
+}
+
+.process-step-deliverables li i {
+  color: #38BDF8;
+  font-size: 0.72rem;
+}
+
+/* --------------------------------------------------------------------------
+   D. Dedicated Services Page Layout & Cards
+   -------------------------------------------------------------------------- */
+.services-nav-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 30px auto 44px;
+  max-width: 1060px;
+}
+
+.service-nav-pill {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-steel-dark);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.service-nav-pill:hover,
+.service-nav-pill.active {
+  background: var(--color-blue-industrial);
+  color: var(--color-white);
+  border-color: var(--color-blue-industrial);
+  box-shadow: 0 4px 14px rgba(18, 102, 178, 0.25);
+}
+
+.services-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+}
+
+.service-catalog-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+}
+
+.service-catalog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(18, 102, 178, 0.35);
+}
+
+.service-catalog-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  background: #0B1220;
+}
+
+.service-catalog-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-catalog-card:hover .service-catalog-img-wrap img {
+  transform: scale(1.05);
+}
+
+.service-catalog-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(11, 18, 32, 0.85);
+  backdrop-filter: blur(6px);
+  color: var(--color-blue-accent);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.service-catalog-body {
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.service-catalog-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-navy-dark);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.service-catalog-desc {
+  font-size: 0.92rem;
+  color: var(--color-steel-dark);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.service-capabilities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--color-bg-light);
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+}
+
+.service-capabilities-list li {
+  font-size: 0.83rem;
+  color: var(--color-navy);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.service-capabilities-list li i {
+  color: var(--color-blue-industrial);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.service-catalog-cta-wrap {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 18px;
+}
+
+.service-catalog-cta-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   E. Responsive Adjustments for New Sections
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .industries-grid,
+  .services-catalog-grid,
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .industries-grid,
+  .services-catalog-grid,
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-floor-img-wrap {
+    height: 280px;
+  }
+
+  .shop-floor-meta-bar {
     flex-direction: column;
     align-items: flex-start;
   }
