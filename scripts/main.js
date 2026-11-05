@@ -9,25 +9,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
 
   if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('mobile-open');
+    const setMenuOpen = (isOpen) => {
+      navLinks.classList.toggle('mobile-open', isOpen);
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Close navigation menu' : 'Open navigation menu'
+      );
+
       const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        if (navLinks.classList.contains('mobile-open')) {
-          icon.className = 'fa-solid fa-xmark';
-        } else {
-          icon.className = 'fa-solid fa-bars';
-        }
+      if (icon) icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    };
+
+    mobileToggle.addEventListener('click', () => {
+      setMenuOpen(!navLinks.classList.contains('mobile-open'));
+    });
+
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        setMenuOpen(false);
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (
+        navLinks.classList.contains('mobile-open') &&
+        !navLinks.contains(event.target) &&
+        !mobileToggle.contains(event.target)
+      ) {
+        setMenuOpen(false);
       }
     });
 
-    // Close when clicking a nav link
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('mobile-open');
-        const icon = mobileToggle.querySelector('i');
-        if (icon) icon.className = 'fa-solid fa-bars';
-      });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+        setMenuOpen(false);
+        mobileToggle.focus();
+      }
+    });
+
+    window.matchMedia('(min-width: 769px)').addEventListener('change', event => {
+      if (event.matches) setMenuOpen(false);
     });
   }
 
