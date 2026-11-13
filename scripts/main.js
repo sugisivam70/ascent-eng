@@ -104,7 +104,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Contact Form Validation & Real Submission Handler
+  // 4. Services Page – Paginate the component portfolio
+  const worksGallery = document.getElementById('worksGallery');
+  const worksGalleryPages = document.querySelectorAll('[data-work-page-target]');
+
+  if (worksGallery && worksGalleryPages.length) {
+    const worksCards = worksGallery.querySelectorAll('.works-gallery-card');
+
+    const setWorksPage = (page) => {
+      worksCards.forEach(card => {
+        const cardPage = Number(card.dataset.workPage || 1);
+        if (!card.dataset.workPage) card.dataset.workPage = '1';
+        card.classList.toggle('is-active', cardPage === page);
+      });
+
+      worksGalleryPages.forEach(button => {
+        const isCurrent = Number(button.dataset.workPageTarget) === page;
+        button.classList.toggle('is-current', isCurrent);
+        if (isCurrent) {
+          button.setAttribute('aria-current', 'page');
+        } else {
+          button.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    worksGalleryPages.forEach(button => {
+      button.addEventListener('click', () => {
+        setWorksPage(Number(button.dataset.workPageTarget));
+        worksGallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    setWorksPage(1);
+  }
+
+  // 5. Contact Form Validation & Real Submission Handler
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     const feedbackBox = document.getElementById('formFeedback');
