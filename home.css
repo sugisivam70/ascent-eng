@@ -204,7 +204,7 @@ ul {
 .navbar-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 72px;
 }
 
@@ -975,7 +975,74 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
-   11. Section 5 – Asymmetric Precision Components Gallery
+   11. Section 7 – Our Infrastructure Gallery
+   -------------------------------------------------------------------------- */
+.infrastructure-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.infrastructure-gallery-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.infrastructure-gallery-card:hover {
+  border-color: rgba(18, 102, 178, 0.38);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-5px);
+}
+
+.infrastructure-gallery-image {
+  aspect-ratio: 4 / 5;
+  background: var(--color-navy-dark);
+  overflow: hidden;
+}
+
+.infrastructure-gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-smooth);
+}
+
+.infrastructure-gallery-card:hover .infrastructure-gallery-image img {
+  transform: scale(1.045);
+}
+
+.infrastructure-gallery-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.infrastructure-gallery-content h3 {
+  color: var(--color-navy);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.infrastructure-gallery-content p {
+  color: var(--color-steel);
+  font-size: 0.91rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   12. Section 5 – Asymmetric Precision Components Gallery
    -------------------------------------------------------------------------- */
 .asymmetric-gallery {
   display: grid;
@@ -1610,6 +1677,10 @@ ul {
     grid-template-columns: 1fr;
   }
 
+  .infrastructure-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .env-features-row {
     grid-template-columns: 1fr 1fr;
   }
@@ -1700,6 +1771,14 @@ ul {
 
   .asymmetric-subcard-img {
     height: 180px;
+  }
+
+  .infrastructure-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .infrastructure-gallery-image {
+    aspect-ratio: 4 / 4.25;
   }
 }
 
