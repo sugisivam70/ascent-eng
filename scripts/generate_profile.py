@@ -322,7 +322,7 @@ def generate_html():
                     <tr>
                       <th>GSTN IDENTIFIERS</th>
                       <td>
-                        <span class="cp-badge-new">29DCAPR1495B1ZK</span> &nbsp;
+                        <span class="cp-badge-new">29GLQPK8510N1Z6</span> &nbsp;
                         <span class="cp-badge-new">29GAUPB9697A1ZZ</span>
                       </td>
                     </tr>
@@ -1666,7 +1666,7 @@ def generate_html():
                   <h5>Official Technical Email &amp; Tax ID</h5>
                   <p>
                     Official Email: <a href="mailto:ascenteng03@gmail.com"><strong>ascenteng03@gmail.com</strong></a><br />
-                    GSTIN Identification: <strong class="text-gold">29DCAPR1495B1ZK</strong> / <strong class="text-gold">29GAUPB9697A1ZZ</strong>
+                    GSTIN Identification: <strong class="text-gold">29GLQPK8510N1Z6</strong> / <strong class="text-gold">29GAUPB9697A1ZZ</strong>
                   </p>
                 </div>
               </div>
@@ -1771,7 +1771,7 @@ def generate_html():
               Aerospace &amp; Defense Parts Manufacturer. Equipped with simultaneous 5-axis vertical machining capability and a multi-station CNC production fleet in Peenya 3rd Stage, Bangalore.
             </p>
             <div style="margin-top: 14px; font-size: 0.82rem; color: var(--cp-gold);">
-              <i class="fa-solid fa-id-card"></i> GSTIN: <strong>29DCAPR1495B1ZK</strong> &bull; <strong>29GAUPB9697A1ZZ</strong>
+              <i class="fa-solid fa-id-card"></i> GSTIN: <strong>29GLQPK8510N1Z6</strong> &bull; <strong>29GAUPB9697A1ZZ</strong>
             </div>
           </div>
 

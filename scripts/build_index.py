@@ -58,7 +58,7 @@ html_content = '''<!DOCTYPE html>
           </div>
           <div class="top-notice-item">
             <i class="fa-solid fa-id-card"></i>
-            <span>GSTIN: <strong class="gst-badge">29DCAPR1495B1ZK</strong></span>
+            <span>GSTIN: <strong class="gst-badge">29GLQPK8510N1Z6</strong></span>
           </div>
         </div>
         <div class="top-notice-right">
@@ -1024,7 +1024,7 @@ html_content = '''<!DOCTYPE html>
             </p>
             <div class="top-notice-item">
               <i class="fa-solid fa-id-card"></i>
-              <span>GSTIN: <strong class="gst-badge">29DCAPR1495B1ZK</strong></span>
+              <span>GSTIN: <strong class="gst-badge">29GLQPK8510N1Z6</strong></span>
             </div>
           </div>
 
